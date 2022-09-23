@@ -1,11 +1,18 @@
 #+title: Qtile
 #+PROPERTY:
 
- - Qtile Config
-   - Imports
-   - Variables
-   - Keys
-   - Group
+* Table of content :toc:
+- [[#qtile-config][Qtile Config]]
+  - [[#imports][Imports]]
+  - [[#variables][Variables]]
+  - [[#keys][Keys]]
+  - [[#groups][Groups]]
+  - [[#layouts][Layouts]]
+  - [[#widget-default-configs][Widget default configs]]
+  - [[#screens][Screens]]
+  - [[#mouse-input][Mouse input]]
+  - [[#rules][Rules]]
+  - [[#end-of-config-files][End of Config files]]
 
 * Qtile Config
 ** Imports
@@ -19,7 +26,10 @@ from libqtile.utils import guess_terminal
 ** Variables
 #+BEGIN_SRC python :tangle config.py
 mod = "mod4"
-terminal = guess_terminal()
+Terminal = guess_terminal()
+FileManager = "nautilus"
+WebBrowser = "firefox"
+EmailClient = "thunderbird"
 
 #+END_SRC
 ** Keys
@@ -46,8 +56,8 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
 
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "t", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
+    Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
 
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
