@@ -4,7 +4,10 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
+Terminal = guess_terminal()
+Web_Browser = "firefox"
+EmailClient = "thunderbird"
+App_Launcher = "rofi -show-icons -show drun"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -28,14 +31,16 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
 
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "t", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
+    Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
 
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
+    Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -89,7 +94,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),

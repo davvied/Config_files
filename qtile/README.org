@@ -27,9 +27,9 @@ from libqtile.utils import guess_terminal
 #+BEGIN_SRC python :tangle config.py
 mod = "mod4"
 Terminal = guess_terminal()
-FileManager = "nautilus"
-WebBrowser = "firefox"
+Web_Browser = "firefox"
 EmailClient = "thunderbird"
+App_Launcher = "rofi -show-icons -show drun"
 
 #+END_SRC
 ** Keys
@@ -64,6 +64,8 @@ keys = [
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
+    Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
 ]
 #+END_SRC
 ** Groups
@@ -128,7 +130,7 @@ extension_defaults = widget_defaults.copy()
 #+BEGIN_SRC python :tangle config.py
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
