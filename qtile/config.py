@@ -80,7 +80,7 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(),
+    layout.MonadTall(ratio=0.65,),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -149,7 +149,7 @@ reconfigure_screens = True
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser('/home/lin/.local/Config_files/qtile/autostart.sh')
     subprocess.Popen([home])
 
 # If things like steam games want to auto-minimize themselves when losing

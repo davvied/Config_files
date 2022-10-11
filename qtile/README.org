@@ -104,13 +104,12 @@ for i in groups:
 ** Layouts
 #+BEGIN_SRC python :tangle config.py
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.MonadTall(ratio=0.65,),    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -194,7 +193,7 @@ reconfigure_screens = True
 #+BEGIN_SRC python :tangle config.py
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser('/home/lin/.local/Config_files/qtile/autostart.sh')
     subprocess.Popen([home])
 #+END_SRC
 ** End of Config files
