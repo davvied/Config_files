@@ -30,6 +30,7 @@ Terminal = guess_terminal()
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
+File_Manager = "pcmanfm-qt"
 
 #+END_SRC
 ** Keys
@@ -66,6 +67,7 @@ keys = [
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
+    Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
 ]
 #+END_SRC
 ** Groups
