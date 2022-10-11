@@ -1,4 +1,6 @@
-from libqtile import bar, layout, widget
+import os
+import subprocess
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -8,6 +10,7 @@ Terminal = guess_terminal()
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
+File_Manager = "pcmanfm-qt"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -41,6 +44,7 @@ keys = [
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
+    Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -142,6 +146,11 @@ floating_layout = layout.Floating(
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?

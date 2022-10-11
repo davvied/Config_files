@@ -17,7 +17,9 @@
 * Qtile Config
 ** Imports
 #+BEGIN_SRC python :tangle config.py
-from libqtile import bar, layout, widget
+import os
+import subprocess
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -188,6 +190,13 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 #+END_SRC
+
+#+BEGIN_SRC python :tangle config.py
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
+#+END_SRC
 ** End of Config files
 #+BEGIN_SRC python :tangle config.py
 # If things like steam games want to auto-minimize themselves when losing
@@ -206,5 +215,13 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+#+END_SRC
+
+#+BEGIN_SRC sh :tangle autostart.sh
+#!/usr/bin/env sh
+
+nitrogen --restore &
+/usr/bin/emacs --daemon &
 
 #+END_SRC
