@@ -172,8 +172,15 @@ widget_defaults = dict(
     font="sans",
     fontsize=12,
     padding=3,
+    # background="#dfdfdf",#colors[2],
 )
 extension_defaults = widget_defaults.copy()
+
+#+END_SRC
+*** Widget list (Top bar)
+#+BEGIN_SRC python :tangle config.py
+
+# def init_widgets_list_top():
 
 #+END_SRC
 *** Screen layout

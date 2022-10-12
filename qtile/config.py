@@ -126,8 +126,11 @@ widget_defaults = dict(
     font="sans",
     fontsize=12,
     padding=3,
+    # background="#dfdfdf",#colors[2],
 )
 extension_defaults = widget_defaults.copy()
+
+# def init_widgets_list_top():
 
 screens = [
     Screen(
