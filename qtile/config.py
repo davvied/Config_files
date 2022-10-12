@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+import os
+import re
+import socket
+import subprocess
+from libqtile import bar, layout, widget, hook
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
+from libqtile.utils import guess_terminal
+from typing import List  # noqa: F401
+
 mod = "mod4"
 Terminal = guess_terminal()
 Web_Browser = "firefox"
@@ -114,7 +125,7 @@ colors = [["#282c34", "#282c34"],
           ["#46d9ff", "#46d9ff"],
           ["#a9a1e1", "#a9a1e1"],],
 
-# prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 widget_defaults = dict(
     font="sans",

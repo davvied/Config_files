@@ -204,8 +204,8 @@ colors = [["#282c34", "#282c34"],
 
 #+END_SRC
 *** prompt layout
-#+BEGIN_SRC python :tangle config.py
-# prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+#+BEGIN_SRC python
+prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 #+END_SRC
 *** Widget default configs
