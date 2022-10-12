@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-import os
-import re
-import subprocess
-from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
-from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
-from typing import List  # noqa: F401
-
 mod = "mod4"
 Terminal = guess_terminal()
 Web_Browser = "firefox"
@@ -35,21 +25,22 @@ keys = [
     Key([mod, "control"], "h", lazy.layout.grow(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.shrink(), desc="Grow window to the left"),
 
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-
-    Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
-    Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
-
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
+    #     desc="Toggle between split and unsplit sides of stack",
+    # ),
+
+    Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
+    Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
+
     Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
     Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
+    Key([mod], "w", lazy.spawn("/usr/bin/emacsclient -c -a /usr/bin/emacs -a"), desc="Spawn file manager"),
 ]
 
 groups = [Group(i) for i in "123456789"]

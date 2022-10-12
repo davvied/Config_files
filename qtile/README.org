@@ -1,5 +1,8 @@
-#+title: Qtile
-#+PROPERTY:
+#+title: Qtile Config
+#+AUTHOR: S.D
+#+PROPERTY: header-args :tangle config.py
+#+auto_tangle: t
+#+STARTUP: showeverything
 
 * Table of content :toc:
 - [[#qtile-config][Qtile Config]]
@@ -16,10 +19,13 @@
 
 * Qtile Config
 ** Imports
-#+BEGIN_SRC python :tangle config.py
+Imported modules needed for qtile config
+
+#+BEGIN_SRC python
 # -*- coding: utf-8 -*-
 import os
 import re
+import socket
 import subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -29,6 +35,7 @@ from typing import List  # noqa: F401
 
 #+END_SRC
 ** Variables
+Create some applications to variables, for easy of access. In case i need to change them latter.
 #+BEGIN_SRC python :tangle config.py
 mod = "mod4"
 Terminal = guess_terminal()
@@ -39,6 +46,36 @@ File_Manager = "pcmanfm-qt"
 
 #+END_SRC
 ** Keys
+| Windows Modification | Actions                      |
+| Key Bindings         |                              |
+|----------------------+------------------------------|
+| Mod + h              | Move focus to Left           |
+| Mod + l              | Move focus to Right          |
+| Mod + j              | Move focus Down              |
+| Mod + k              | Move focus Up                |
+| Mod + shift + h      | Move windows to Left         |
+| Mod + shift + l      | Move windows to Right        |
+| Mod + shift + j      | Move windows Down            |
+| Mod + shift + k      | Move windows Up              |
+| Mod + n              | Reset all windows size       |
+| Mod + control + h    | Grow selected windows size   |
+| Mod + control + l    | Shrink selected windows size |
+| Mod + Tab            | Change to next layout        |
+| Mod + shift + q      | Quit qtile                   |
+| Mod + shift + r      | Restart qtile                |
+| Mod + q              | Kill the selected window     |
+| Mod + Alt + r        | Run qtile prompt widget      |
+
+| Launch applications | Action                        |
+| Key Bindings        |                               |
+|---------------------+-------------------------------|
+| Mod + Return        | Terminal                      |
+| Mod + t             | Terminal                      |
+| Mod + r             | Run rofi applicarion launcher |
+| Mod + b             | Web Browser                   |
+| Mod + e             | File Manager                  |
+| Mod + w             | Emacs                         |
+
 #+BEGIN_SRC python :tangle config.py
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -60,21 +97,22 @@ keys = [
     Key([mod, "control"], "h", lazy.layout.grow(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.shrink(), desc="Grow window to the left"),
 
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-
-    Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
-    Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
-
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
+    #     desc="Toggle between split and unsplit sides of stack",
+    # ),
+
+    Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
+    Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
+
     Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
     Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
+    Key([mod], "w", lazy.spawn("/usr/bin/emacsclient -c -a /usr/bin/emacs -a"), desc="Spawn file manager"),
 ]
 #+END_SRC
 ** Groups
@@ -258,20 +296,7 @@ def start_once():
     subprocess.call([home + '/.local/Config_files/qtile/autostart.sh'])
 
 #+END_SRC
-*** auto start once file
-#+BEGIN_SRC sh :tangle autostart.sh
-#!/usr/bin/env sh
 
-/usr/bin/emacs --daemon &
-
-### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
-# 1. Uncomment to restore last saved wallpaper
-# xargs xwallpaper --stretch < ~/.cache/wall &
-# 2. Uncomment to set a random wallpaper on login
-find /usr/share/backgrounds/ -type f | shuf -n 1 | xargs xwallpaper --stretch &
-# 3. Uncomment to set wallpaper with nitrogen
-# nitrogen --restore &
-#+END_SRC
 ** End of Config files
 #+BEGIN_SRC python :tangle config.py
 
