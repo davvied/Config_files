@@ -11,17 +11,21 @@
   - [[#screens][Screens]]
   - [[#mouse-input][Mouse input]]
   - [[#rules][Rules]]
+  -   [[#auto-start][Auto start]]
   - [[#end-of-config-files][End of Config files]]
 
 * Qtile Config
 ** Imports
 #+BEGIN_SRC python :tangle config.py
+# -*- coding: utf-8 -*-
 import os
+import re
 import subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from typing import List  # noqa: F401
 
 #+END_SRC
 ** Variables
@@ -172,18 +176,12 @@ widget_defaults = dict(
     font="sans",
     fontsize=12,
     padding=3,
-    # background="#dfdfdf",#colors[2],
+    # background=colors[2],
 )
 extension_defaults = widget_defaults.copy()
 
 #+END_SRC
-*** Widget list (Top bar)
-#+BEGIN_SRC python :tangle config.py
-
-# def init_widgets_list_top():
-
-#+END_SRC
-*** Screen layout
+*** Screen widget layout
 #+BEGIN_SRC python :tangle config.py
 screens = [
     Screen(
@@ -249,15 +247,34 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 #+END_SRC
-
+**   Auto start
+*** auto start once
 #+BEGIN_SRC python :tangle config.py
+
 @hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser('/home/lin/.local/Config_files/qtile/autostart.sh')
-    subprocess.Popen([home])
+def start_once():
+# def autostart():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.local/Config_files/qtile/autostart.sh'])
+
+#+END_SRC
+*** auto start once file
+#+BEGIN_SRC sh :tangle autostart.sh
+#!/usr/bin/env sh
+
+/usr/bin/emacs --daemon &
+
+### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
+# 1. Uncomment to restore last saved wallpaper
+# xargs xwallpaper --stretch < ~/.cache/wall &
+# 2. Uncomment to set a random wallpaper on login
+find /usr/share/backgrounds/ -type f | shuf -n 1 | xargs xwallpaper --stretch &
+# 3. Uncomment to set wallpaper with nitrogen
+# nitrogen --restore &
 #+END_SRC
 ** End of Config files
 #+BEGIN_SRC python :tangle config.py
+
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
 auto_minimize = True
@@ -277,10 +294,3 @@ wmname = "LG3D"
 
 #+END_SRC
 
-#+BEGIN_SRC sh :tangle autostart.sh
-#!/usr/bin/env sh
-
-nitrogen --restore &
-/usr/bin/emacs --daemon &
-
-#+END_SRC

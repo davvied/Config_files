@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 import os
+import re
 import subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from typing import List  # noqa: F401
 
 mod = "mod4"
 Terminal = guess_terminal()
@@ -126,11 +129,9 @@ widget_defaults = dict(
     font="sans",
     fontsize=12,
     padding=3,
-    # background="#dfdfdf",#colors[2],
+    # background=colors[2],
 )
 extension_defaults = widget_defaults.copy()
-
-# def init_widgets_list_top():
 
 screens = [
     Screen(
@@ -190,9 +191,10 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 @hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser('/home/lin/.local/Config_files/qtile/autostart.sh')
-    subprocess.Popen([home])
+def start_once():
+# def autostart():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.local/Config_files/qtile/autostart.sh'])
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
