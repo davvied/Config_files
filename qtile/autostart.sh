@@ -11,4 +11,4 @@ find /usr/share/backgrounds/elementary_wallpapers -type f | shuf -n 1 | xargs xw
 # 3. Uncomment to set wallpaper with nitrogen
 # nitrogen --restore &
 nm-applet &
-picom --no-vsync &
+picom --no-vsync --fade-in-step=0.4 --fade-out-step=0.4 --shadow --blur-background --daemon
