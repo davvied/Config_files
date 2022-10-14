@@ -66,6 +66,8 @@ File_Manager = "pcmanfm-qt"
 | Mod + q              | Kill the selected window     |
 | Mod + Alt + r        | Run qtile prompt widget      |
 
+#######################################################
+
 | Launch applications | Action                        |
 | Key Bindings        |                               |
 |---------------------+-------------------------------|
