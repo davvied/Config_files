@@ -116,15 +116,16 @@ layouts = [
 
 colors = {"Gray":           "#282c34",
           "Black":          "#1c1f24",
-          "Gray_White":     "#dfdfdf",
+          "White_Smoke":    "#dfdfdf",
           "White":          "#ffffff",
-          "Read":           "#ff0000",
-          "Read_Orange":    "#ff6c6b",
+          "Red":            "#ff0000",
+          "Orange_Red":     "#ff6c6b",
           "Orange":         "#da8548",
-          "Green":          "#98be65",
-          "Light_Blue":     "#46d9ff",
+          "Green_Light":    "#98be65",
+          "Blue_Light":     "#46d9ff",
           "Blue":           "#51afef",
-          "Light-Purple":   "#a9a1e1",
+          "Steel_Blue":     "#4682b4",
+          "Purple_Light":   "#a9a1e1",
           "Purple":         "#c678dd",
           }
 
@@ -146,7 +147,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
-                    border = colors["Blue"],
+                    border = colors["Purple_Light"],
                     borderwidth = 2,
                     center_aligned = True,
                     margin = 3,
@@ -161,7 +162,7 @@ screens = [
                 ),
                 # widget.Bluetooth(),
                 widget.CheckUpdates(
-                    colour_have_updates = colors["Read"],
+                    colour_have_updates = colors["Red"],
                     colour_no_updates = colors["Gray"],
                     distro = 'Arch',
                     no_update_string = 'Up to date',
@@ -177,9 +178,9 @@ screens = [
         bottom=bar.Bar(
             [
                 widget.GroupBox(
-                    font = "Ubuntu Bold",
                     fontsize = 12,
-                    active = colors["Read_Orange"],
+                    active = colors["Orange_Red"],
+                    block_highlight_text_color = colors["Red"],
                 ),
             ],
             24,
