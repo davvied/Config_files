@@ -114,16 +114,19 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#282c34", "#282c34"],
-          ["#1c1f24", "#1c1f24"],
-          ["#dfdfdf", "#dfdfdf"],
-          ["#ff6c6b", "#ff6c6b"],
-          ["#98be65", "#98be65"],
-          ["#da8548", "#da8548"],
-          ["#51afef", "#51afef"],
-          ["#c678dd", "#c678dd"],
-          ["#46d9ff", "#46d9ff"],
-          ["#a9a1e1", "#a9a1e1"],],
+colors = {"Gray":           "#282c34",
+          "Black":          "#1c1f24",
+          "Gray_White":     "#dfdfdf",
+          "White":          "#ffffff",
+          "Read":           "#ff0000",
+          "Read_Orange":    "#ff6c6b",
+          "Orange":         "#da8548",
+          "Green":          "#98be65",
+          "Light_Blue":     "#46d9ff",
+          "Blue":           "#51afef",
+          "Light-Purple":   "#a9a1e1",
+          "Purple":         "#c678dd",
+          }
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -131,7 +134,8 @@ widget_defaults = dict(
     font="sans",
     fontsize=12,
     padding=3,
-    # background=colors[2],
+    background = colors["White"],
+    foreground = colors["Gray"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -140,7 +144,10 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.AGroupBox(),
+                widget.AGroupBox(
+                    border = colors["Blue"],
+                    borderwidth = 3,
+                ),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
@@ -158,7 +165,11 @@ screens = [
         ),
         bottom=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.GroupBox(
+                    font = "Ubuntu Bold",
+                    fontsize = 12,
+                    active = colors["Read_Orange"],
+                ),
             ],
             24,
         ),
