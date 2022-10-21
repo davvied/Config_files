@@ -131,7 +131,8 @@ colors = {"Gray":           "#282c34",
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 widget_defaults = dict(
-    font="sans",
+    # font="sans",
+    font = "Ubuntu Bold",
     fontsize=12,
     padding=3,
     background = colors["White"],
@@ -146,7 +147,9 @@ screens = [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
                     border = colors["Blue"],
-                    borderwidth = 3,
+                    borderwidth = 2,
+                    center_aligned = True,
+                    margin_x = 8,
                 ),
                 widget.Prompt(),
                 widget.WindowName(),
