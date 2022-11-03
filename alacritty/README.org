@@ -1,0 +1,19 @@
+#+title: Alacritty :tangle alacritty.yml
+#+AUTHOR: S.D
+#+PROPERTY: header-args :tangle alacritty.yml
+#+auto_tangle: t
+
+
+* Table of Content :toc:
+- [[#window][Window]]
+
+* Window
+window dimensions
+#+BEGIN_SRC yml :tangle alacritty.yml
+window:
+  dimensions:
+    columns: 80
+    lines: 20
+
+
+#+END_SRC
