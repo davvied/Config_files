@@ -6,8 +6,22 @@
 
 * Table of Content :toc:
 - [[#window][Window]]
+  -  [[#dimensions][Dimensions]]
+  - [[#padding][Padding]]
+  - [[#opacity][Opacity]]
+  - [[#startup-mode][Startup mode]]
+  - [[#title][Title]]
+- [[#scrolling][Scrolling]]
+  -  [[#history][History]]
+  - [[#scrolling-speed][Scrolling speed]]
+- [[#font-configuration][Font configuration]]
+  - [[#font][Font]]
+  - [[#font-size][Font Size]]
+  - [[#font-decoration][Font Decoration]]
 
 * Window
+Window specifications
+**  Dimensions
 window dimensions
 #+BEGIN_SRC yml :tangle alacritty.yml
 window:
@@ -15,5 +29,76 @@ window:
     columns: 80
     lines: 20
 
+#+END_SRC
+** Padding
+Window padding
+#+BEGIN_SRC yml :tangle alacritty.yml
+  padding:
+    x: 5
+    y: 5
+
+#+END_SRC
+** Opacity
+  Background opacity
+#+BEGIN_SRC yml :tangle alacritty.yml
+  opacity: 0.8
+
+#+END_SRC
+** Startup mode
+   Values for `startup_mode`:
+     - Windowed
+     - Maximized
+     - Fullscreen
+#+BEGIN_SRC yml :tangle alacritty.yml
+  startup_mode: Windowed
+
+#+END_SRC
+** Title
+   Allow terminal applications to change Alacritty's window title.
+#+BEGIN_SRC yml :tangle alacritty.yml
+  title: Alacritty
+  dynamic_title: true
+
+#+END_SRC
+* Scrolling
+**  History
+  Maximum number of lines in the scrollback buffer.
+  Specifying '0' will disable scrolling.
+#+BEGIN_SRC yml :tangle alacritty.yml
+scrolling:
+  history: 10000
+#+END_SRC
+** Scrolling speed
+  Scrolling distance multiplier.
+#+BEGIN_SRC yml :tangle alacritty.yml
+  multiplier: 3
+
+#+END_SRC
+* Font configuration
+*** Font
+#+BEGIN_SRC yml :tangle alacritty.yml
+  normal:
+    family: Ubuntu Mono
+    style: Regular
+
+  bold:
+    family: Ubuntu Mono
+    style: Bold
+
+  italic:
+    family: Ubuntu Mono
+    style: Italic
+
+  bold_italic:
+    family: Ubuntu Mono
+    style: Bold Italic
+#+END_SRC
+*** Font Size
+#+BEGIN_SRC yml :tangle alacritty.yml
+  size: 12.0
+#+END_SRC
+** Font Decoration
+#+BEGIN_SRC yml :tangle alacritty.yml
+draw_bold_text_with_bright_colors: true
 
 #+END_SRC
