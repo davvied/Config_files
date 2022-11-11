@@ -253,7 +253,10 @@ screens = [
                     colour_no_updates = colors["Gray"],
                     distro = 'Arch',
                     no_update_string = 'Up to date',
-                    update_interval = 1800,
+                    update_interval = 600,
+                ),
+                widget.OpenWeather(
+                    cityid = 136256,
                 ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.Systray(),
@@ -268,6 +271,10 @@ screens = [
                     fontsize = 12,
                     active = colors["Orange_Red"],
                     block_highlight_text_color = colors["Red"],
+                ),
+                # widget.Spacer(),
+                widget.TaskList(
+                    highlight_method = 'block',
                 ),
             ],
             24,
@@ -310,17 +317,48 @@ reconfigure_screens = True
 
 #+END_SRC
 **   Auto start
-*** auto start once
+*** Auto start once
 #+BEGIN_SRC python :tangle config.py
 
 @hook.subscribe.startup_once
 def start_once():
 # def autostart():
     home = os.path.expanduser('~')
-    subprocess.call([home + '/.local/Config_files/qtile/autostart.sh'])
+    subprocess.call([home + '/.local/Config_files/qtile/start_once.sh'])
 
 #+END_SRC
+*** Auto Start once script
+#+BEGIN_SRC bash :tangle start_once.sh :shebang #!/bin/bash
+#!/usr/bin/env bash
 
+/usr/bin/emacs --daemon &
+
+# /home/lin/.screenlayout/res.sh &
+# nitrogen --restore &
+# nm-applet &
+picom --vsyn --fade-in-step=0.4 --fade-out-step=0.4 --shadow --blur-background --daemon &
+
+#+END_SRC
+*** Auto start (repeat)
+#+BEGIN_SRC python :tangle config.py
+@hook.subscribe.startup
+def autostart():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.local/Config_files/qtile/autostart.sh'])
+
+
+#+END_SRC
+*** Auto start script (repeat)
+#+BEGIN_SRC bash :tangle autostart.sh :shebang #!/bin/bash
+### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
+# 1. Uncomment to restore last saved wallpaper
+# xargs xwallpaper --stretch < ~/.cache/wall &
+# 2. Uncomment to set a random wallpaper on login
+# find /usr/share/backgrounds/elementary_wallpapers -type f | shuf -n 1 | xargs xwallpaper --stretch &
+find /home/mpc-man/Pictures/wallpaper -type f | shuf -n 1 | xargs xwallpaper --stretch &
+# 3. Uncomment to set wallpaper with nitrogen
+
+#+END_SRC
 ** End of Config files
 #+BEGIN_SRC python :tangle config.py
 

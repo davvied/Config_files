@@ -166,7 +166,10 @@ screens = [
                     colour_no_updates = colors["Gray"],
                     distro = 'Arch',
                     no_update_string = 'Up to date',
-                    update_interval = 1800,
+                    update_interval = 600,
+                ),
+                widget.OpenWeather(
+                    cityid = 136256,
                 ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.Systray(),
@@ -181,6 +184,10 @@ screens = [
                     fontsize = 12,
                     active = colors["Orange_Red"],
                     block_highlight_text_color = colors["Red"],
+                ),
+                # widget.Spacer(),
+                widget.TaskList(
+                    highlight_method = 'block',
                 ),
             ],
             24,
@@ -218,6 +225,11 @@ reconfigure_screens = True
 @hook.subscribe.startup_once
 def start_once():
 # def autostart():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.local/Config_files/qtile/start_once.sh'])
+
+@hook.subscribe.startup
+def autostart():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.local/Config_files/qtile/autostart.sh'])
 
