@@ -5,5 +5,6 @@
 
 # /home/lin/.screenlayout/res.sh &
 # nitrogen --restore &
-# nm-applet &
+nm-applet &
+pasystray &
 picom --vsync --fade-in-step=0.4 --fade-out-step=0.4 --shadow --blur-background --daemon &

@@ -11,10 +11,11 @@ from typing import List  # noqa: F401
 
 mod = "mod4"
 Terminal = guess_terminal()
+Terminal = "alacritty"
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
-File_Manager = "pcmanfm-qt"
+File_Manager = "nautilus"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -28,10 +29,6 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
-    # Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    # Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    # Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    # Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "control"], "h", lazy.layout.grow(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.shrink(), desc="Grow window to the left"),
@@ -44,6 +41,12 @@ keys = [
     # Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
     #     desc="Toggle between split and unsplit sides of stack",
     # ),
+
+    # Key(["control", "mod1"], "Left", lazy.spawn(terminal + "-e amixer set Master 2%- -q")),
+    Key(["control", "shift"], "Left", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
+    Key(["control", "shift"], "Right", lazy.spawn("amixer set Master 2%+ -q"), desc="inc audio volume"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 2%+ -q"), desc="inc audio volume"),
 
     Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
     Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
