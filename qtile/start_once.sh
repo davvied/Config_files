@@ -3,7 +3,7 @@
 
 /usr/bin/emacs --daemon &
 
-# /home/lin/.screenlayout/res.sh &
+$HOME/.screenlayout/res.sh &
 # nitrogen --restore &
 nm-applet &
 pasystray &
