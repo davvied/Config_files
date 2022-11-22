@@ -237,7 +237,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
-                    border = colors["Purple_Light"],
+                    border = colors["White"],
                     borderwidth = 2,
                     center_aligned = True,
                     margin = 3,
@@ -254,12 +254,15 @@ screens = [
                 widget.CheckUpdates(
                     colour_have_updates = colors["Red"],
                     colour_no_updates = colors["Gray"],
-                    distro = 'Arch',
+                    distro = 'Arch_paru',
                     no_update_string = 'Up to date',
                     update_interval = 600,
                 ),
                 widget.OpenWeather(
                     cityid = 136256,
+                ),
+                widget.KeyboardLayout(
+                    configured_keyboards = ['us', 'ir'],
                 ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.Systray(),

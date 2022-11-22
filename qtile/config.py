@@ -42,11 +42,11 @@ keys = [
     #     desc="Toggle between split and unsplit sides of stack",
     # ),
 
-    # Key(["control", "mod1"], "Left", lazy.spawn(terminal + "-e amixer set Master 2%- -q")),
     Key(["control", "shift"], "Left", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
     Key(["control", "shift"], "Right", lazy.spawn("amixer set Master 2%+ -q"), desc="inc audio volume"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 2%+ -q"), desc="inc audio volume"),
+    Key([], "XF86AudioMute", lazy.spawn("amixer set Master toggle -q"), desc="Toggle audio on & off"),
 
     Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
     Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
@@ -150,7 +150,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
-                    border = colors["Purple_Light"],
+                    border = colors["White"],
                     borderwidth = 2,
                     center_aligned = True,
                     margin = 3,
@@ -167,12 +167,15 @@ screens = [
                 widget.CheckUpdates(
                     colour_have_updates = colors["Red"],
                     colour_no_updates = colors["Gray"],
-                    distro = 'Arch',
+                    distro = 'Arch_paru',
                     no_update_string = 'Up to date',
                     update_interval = 600,
                 ),
                 widget.OpenWeather(
                     cityid = 136256,
+                ),
+                widget.KeyboardLayout(
+                    configured_keyboards = ['us', 'ir'],
                 ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.Systray(),
