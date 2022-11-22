@@ -16,6 +16,7 @@ Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
 File_Manager = "nautilus"
+Editer = "/usr/bin/emacsclient -c -a /usr/bin/emacs"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -54,7 +55,7 @@ keys = [
     Key([mod], "r", lazy.spawn(App_Launcher), desc="Spawn rofi app launcher"),
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
     Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
-    Key([mod], "w", lazy.spawn("/usr/bin/emacsclient -c -a /usr/bin/emacs -a"), desc="Spawn file manager"),
+    Key([mod], "w", lazy.spawn(Editer), desc="Spawn an editer"),
 ]
 
 groups = [Group(i) for i in "123456789"]
