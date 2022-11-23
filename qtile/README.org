@@ -1,5 +1,5 @@
 #+title: Qtile Config
-#+AUTHOR: S.D
+#+AUTHOR: S.Dawud M
 #+PROPERTY: header-args :tangle config.py
 #+auto_tangle: t
 #+STARTUP: showeverything
@@ -38,13 +38,14 @@ from typing import List  # noqa: F401
 Create some applications to variables, for easy of access. In case i need to change them latter.
 #+BEGIN_SRC python :tangle config.py
 mod = "mod4"
-Terminal = guess_terminal()
+# Terminal = guess_terminal()
 Terminal = "alacritty"
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
 File_Manager = "nautilus"
 Editer = "/usr/bin/emacsclient -c -a /usr/bin/emacs"
+Display_Manager = "arandr"
 
 #+END_SRC
 ** Keys
@@ -62,11 +63,15 @@ Editer = "/usr/bin/emacsclient -c -a /usr/bin/emacs"
 | Mod + n              | Reset all windows size       |
 | Mod + control + h    | Grow selected windows size   |
 | Mod + control + l    | Shrink selected windows size |
+| Mod + f              | Toggle fullscreen            |
+| Mod + shift + f      | Toggle floating              |
 | Mod + Tab            | Change to next layout        |
 | Mod + shift + q      | Quit qtile                   |
 | Mod + shift + r      | Restart qtile                |
 | Mod + q              | Kill the selected window     |
 | Mod + Alt + r        | Run qtile prompt widget      |
+| Mod + .              | Move focus to perv monitor   |
+| Mod + ,              | Move focus to next monitor   |
 
 #######################################################
 
@@ -79,6 +84,8 @@ Editer = "/usr/bin/emacsclient -c -a /usr/bin/emacs"
 | Mod + b             | Web Browser                   |
 | Mod + e             | File Manager                  |
 | Mod + w             | Emacs                         |
+| Mod + p             | pass password manager         |
+| Mod + shift + p     | display manager               |
 
 #+BEGIN_SRC python :tangle config.py
 keys = [
@@ -96,6 +103,9 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "control"], "h", lazy.layout.grow(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.shrink(), desc="Grow window to the left"),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='toggle floating'),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+
 
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -105,6 +115,13 @@ keys = [
     # Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
     #     desc="Toggle between split and unsplit sides of stack",
     # ),
+    # Key([mod], "w", lazy.to_screen(0), desc='Keyboard focus to monitor 1'),
+    # Key([mod], "e", lazy.to_screen(1), desc='Keyboard focus to monitor 2'),
+    # Key([mod], "r", lazy.to_screen(2), desc='Keyboard focus to monitor 3'),
+         ### Switch focus of monitors
+    Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
+    Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
+
 
     Key(["control", "shift"], "Left", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
@@ -119,6 +136,8 @@ keys = [
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
     Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
     Key([mod], "w", lazy.spawn(Editer), desc="Spawn an editer"),
+    Key([mod], "p", lazy.spawn("passmenu"), desc="password manager"),
+    Key([mod, "shift"], "p", lazy.spawn(Display_Manager), desc="password manager"),
 ]
 #+END_SRC
 ** Groups

@@ -10,13 +10,14 @@ from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401
 
 mod = "mod4"
-Terminal = guess_terminal()
+# Terminal = guess_terminal()
 Terminal = "alacritty"
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
 File_Manager = "nautilus"
 Editer = "/usr/bin/emacsclient -c -a /usr/bin/emacs"
+Display_Manager = "arandr"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -56,6 +57,8 @@ keys = [
     Key([mod], "b", lazy.spawn(Web_Browser), desc="Spawn web browser"),
     Key([mod], "e", lazy.spawn(File_Manager), desc="Spawn file manager"),
     Key([mod], "w", lazy.spawn(Editer), desc="Spawn an editer"),
+    Key([mod], "p", lazy.spawn("passmenu"), desc="password manager"),
+    Key([mod, "shift"], "p", lazy.spawn(Display_Manager), desc="password manager"),
 ]
 
 groups = [Group(i) for i in "123456789"]
