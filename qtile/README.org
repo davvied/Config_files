@@ -214,7 +214,6 @@ layouts = [
 
 ** Screens
 *** Colors
-#+BEGIN_SRC python :tangle config.py
 colors = {"Gray":           "#282c34",
           "Black":          "#1c1f24",
           "White_Smoke":    "#dfdfdf",
@@ -230,7 +229,20 @@ colors = {"Gray":           "#282c34",
           "Purple":         "#c678dd",
           }
 
+#+BEGIN_SRC python :tangle config.py
+colors = {"Black":         "#0c0c0d",
+          "Dark_Red":      "#8C0102",
+          "Red":           "#AE0505",
+          "Light_Red":     "#E00506",
+          "Blue_1":        "#1B788B",
+          "Blue_2":        "#257D8D",
+          "Blue_3":        "#208DA1",
+          "Blue_Gray":     "#65959c",
+          "Light_Blue":    "#91d5e0",
+          }
+
 #+END_SRC
+
 *** prompt layout
 #+BEGIN_SRC python
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
@@ -243,8 +255,8 @@ widget_defaults = dict(
     font = "Ubuntu Bold",
     fontsize=12,
     padding=3,
-    background = colors["White"],
-    foreground = colors["Gray"],
+    background = colors["Black"],
+    foreground = colors["Light_Blue"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -257,7 +269,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
-                    border = colors["White"],
+                    border = colors["Blue_1"],
                     borderwidth = 2,
                     center_aligned = True,
                     margin = 3,
@@ -273,7 +285,7 @@ screens = [
                 # widget.Bluetooth(),
                 widget.CheckUpdates(
                     colour_have_updates = colors["Red"],
-                    colour_no_updates = colors["Gray"],
+                    colour_no_updates = colors["Black"],
                     distro = 'Arch_paru',
                     no_update_string = 'Up to date',
                     update_interval = 600,
@@ -295,8 +307,8 @@ screens = [
             [
                 widget.GroupBox(
                     fontsize = 12,
-                    active = colors["Orange_Red"],
-                    block_highlight_text_color = colors["Red"],
+                    active = colors["Red"],
+                    block_highlight_text_color = colors["Blue_1"],
                 ),
                 # widget.Spacer(),
                 widget.TaskList(

@@ -34,6 +34,9 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "control"], "h", lazy.layout.grow(), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.shrink(), desc="Grow window to the left"),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='toggle floating'),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+
 
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -43,6 +46,13 @@ keys = [
     # Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
     #     desc="Toggle between split and unsplit sides of stack",
     # ),
+    # Key([mod], "w", lazy.to_screen(0), desc='Keyboard focus to monitor 1'),
+    # Key([mod], "e", lazy.to_screen(1), desc='Keyboard focus to monitor 2'),
+    # Key([mod], "r", lazy.to_screen(2), desc='Keyboard focus to monitor 3'),
+         ### Switch focus of monitors
+    Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
+    Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
+
 
     Key(["control", "shift"], "Left", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
@@ -121,19 +131,15 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = {"Gray":           "#282c34",
-          "Black":          "#1c1f24",
-          "White_Smoke":    "#dfdfdf",
-          "White":          "#ffffff",
-          "Red":            "#ff0000",
-          "Orange_Red":     "#ff6c6b",
-          "Orange":         "#da8548",
-          "Green_Light":    "#98be65",
-          "Blue_Light":     "#46d9ff",
-          "Blue":           "#51afef",
-          "Steel_Blue":     "#4682b4",
-          "Purple_Light":   "#a9a1e1",
-          "Purple":         "#c678dd",
+colors = {"Black":         "#0c0c0d",
+          "Dark_Red":      "#8C0102",
+          "Red":           "#AE0505",
+          "Light_Red":     "#E00506",
+          "Blue_1":        "#1B788B",
+          "Blue_2":        "#257D8D",
+          "Blue_3":        "#208DA1",
+          "Blue_Gray":     "#65959c",
+          "Light_Blue":    "#91d5e0",
           }
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
@@ -143,8 +149,8 @@ widget_defaults = dict(
     font = "Ubuntu Bold",
     fontsize=12,
     padding=3,
-    background = colors["White"],
-    foreground = colors["Gray"],
+    background = colors["Black"],
+    foreground = colors["Light_Blue"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -154,7 +160,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
-                    border = colors["White"],
+                    border = colors["Blue_1"],
                     borderwidth = 2,
                     center_aligned = True,
                     margin = 3,
@@ -170,7 +176,7 @@ screens = [
                 # widget.Bluetooth(),
                 widget.CheckUpdates(
                     colour_have_updates = colors["Red"],
-                    colour_no_updates = colors["Gray"],
+                    colour_no_updates = colors["Black"],
                     distro = 'Arch_paru',
                     no_update_string = 'Up to date',
                     update_interval = 600,
@@ -192,8 +198,8 @@ screens = [
             [
                 widget.GroupBox(
                     fontsize = 12,
-                    active = colors["Orange_Red"],
-                    block_highlight_text_color = colors["Red"],
+                    active = colors["Red"],
+                    block_highlight_text_color = colors["Blue_1"],
                 ),
                 # widget.Spacer(),
                 widget.TaskList(
