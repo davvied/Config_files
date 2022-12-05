@@ -132,6 +132,7 @@ layouts = [
 ]
 
 colors = {"Black":         "#0c0c0d",
+          "Gray":          "#282c34",
           "Dark_Red":      "#8C0102",
           "Red":           "#AE0505",
           "Light_Red":     "#E00506",
@@ -147,9 +148,9 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 widget_defaults = dict(
     # font="sans",
     font = "Ubuntu Bold",
-    fontsize=12,
+    fontsize=14,
     padding=3,
-    background = colors["Black"],
+    background = colors["Gray"],
     foreground = colors["Light_Blue"],
 )
 extension_defaults = widget_defaults.copy()
@@ -174,18 +175,38 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 # widget.Bluetooth(),
+                # widget.TextBox(
+                #     "\ue0b6",
+                #     fontsize = 18,
+                #     padding = 0,
+                # ),
                 widget.CheckUpdates(
                     colour_have_updates = colors["Red"],
                     colour_no_updates = colors["Black"],
                     distro = 'Arch_paru',
                     no_update_string = 'Up to date',
                     update_interval = 600,
+                    background = colors["Light_Blue"],
                 ),
+                # widget.TextBox(
+                #     "\ue0b8",
+                #     padding = 8,
+                    # fontsize = 18,
+                    # background = colors["Light_Blue"],
+                    # foreground = colors["Gray"],
+                # ),
                 widget.OpenWeather(
                     cityid = 136256,
                 ),
+                # widget.TextBox(
+                #     "\ue0bc",
+                    # fontsize = 18,
+                #     padding = 8,
+                # ),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
+                    background = colors["Light_Blue"],
+                    foreground = colors["Black"],
                 ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.Systray(),
