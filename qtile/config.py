@@ -131,16 +131,19 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = {"Black":         "#0c0c0d",
-          "Gray":          "#282c34",
-          "Dark_Red":      "#8C0102",
-          "Red":           "#AE0505",
-          "Light_Red":     "#E00506",
-          "Blue_1":        "#1B788B",
-          "Blue_2":        "#257D8D",
-          "Blue_3":        "#208DA1",
-          "Blue_Gray":     "#65959c",
-          "Light_Blue":    "#91d5e0",
+colors = {"Gray":           "#282c34",
+          "Black":          "#1c1f24",
+          "White_Smoke":    "#dfdfdf",
+          "White":          "#ffffff",
+          "Red":            "#ff0000",
+          "Orange_Red":     "#ff6c6b",
+          "Orange":         "#da8548",
+          "Green_Light":    "#98be65",
+          "Blue_Light":     "#46d9ff",
+          "Blue":           "#51afef",
+          "Steel_Blue":     "#4682b4",
+          "Purple_Light":   "#a9a1e1",
+          "Purple":         "#c678dd",
           }
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())

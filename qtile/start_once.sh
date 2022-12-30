@@ -1,6 +1,4 @@
 #!/bin/bash
-#!/usr/bin/env bash
-
 /usr/bin/emacs --daemon &
 
 $HOME/.screenlayout/res.sh &
