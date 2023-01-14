@@ -223,7 +223,7 @@ windowrule = move 75 44%, title:^(Volume Control)$
 ** Key bindings
 
 *** Variables
-
+Defining a few variables for ease of future modifications
 #+BEGIN_SRC conf :tangle hyprland.conf
 
 # $mainMod = SUPER
@@ -235,25 +235,40 @@ $FileManager = pcmanfm
 #+END_SRC
 
 *** Launch applications
-| Mod   | Key    | Application |
-|-------+--------+-------------|
-| Super | T      | terminal    |
-| Super | Return | terminal    |
-| Super | E      | FileManager |
+
+| Mod   | Key    | Application          |
+|-------+--------+----------------------|
+| Super | T      | terminal             |
+| Super | Return | terminal             |
+| Super | E      | FileManager          |
+| Super | R      | Application launcher |
+| Super | B      | Web browser          |
+| Super | W      | Text editor          |
+
 #+BEGIN_SRC conf :tangle hyprland.conf
+
 bind = $mainMod, T, exec, $Terminal
 bind = $mainMod, Return, exec, $Terminal
 bind = $mainMod, E, exec, $FileManager
-bind = $mainMod, V, togglefloating,
 bind = $mainMod, R, exec, wofi --show-icons --show drun
-bind = $mainMod, P, pseudo, # dwindle
-bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, B, exec, $Web_browser
 bind = $mainMod, w, exec, emacsclient -c -a emacs
+
+#+END_SRC
+
+*** Multimedia Keys
+
+#+BEGIN_SRC conf :tangle hyprland.conf
+
 bind = CTRL SHIFT, up, exec, pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo +4%
 bind = CTRL SHIFT, down, exec, pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo -4%
+bind = CTRL SHIFT, up, exec, pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo +4%
+bind = CTRL SHIFT, down, exec, pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo -4%
 
 # Move focus with mainMod + arrow keys
+bind = $mainMod, V, togglefloating,
+bind = $mainMod, P, pseudo, # dwindle
+bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod SHIFT, Q, exit,
 bind = $mainMod, Q, killactive,
 bind = $mainMod, left, movefocus, l
