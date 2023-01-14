@@ -10,6 +10,8 @@
   - [[#monitor-configuration][Monitor configuration]]
   - [[#input][Input]]
   - [[#appearance][Appearance]]
+  - [[#layouts][Layouts]]
+  - [[#key-bindings][Key bindings]]
 
 * Hyprland Config
 This config is based on https://github.com/linuxmobile hyprland config file
@@ -143,13 +145,48 @@ animations {
 }
 #+END_SRC
 
+*** Gestures
+
 #+BEGIN_SRC conf :tangle hyprland.conf
+
+gestures {
+    workspace_swipe = off
+}
+
+# Example per-device config
+device:epic mouse V1 {
+    sensitivity = -0.5
+}
+
+#+END_SRC
+
+** Layouts
+
+*** Dwindle layout
+#+BEGIN_SRC conf :tangle hyprland.conf
+
 dwindle {
-    # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
     no_gaps_when_only = false
     pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = yes # you probably want this
+    use_active_for_splits = false
 }
+
+#+END_SRC
+
+*** Master layout
+
+#+BEGIN_SRC conf :tangle hyprland.conf
+
+master {
+    new_is_master = true
+}
+
+#+END_SRC
+
+*** Window rules
+
+#+BEGIN_SRC conf :tangle hyprland.conf
 
 windowrule = float, file_progress
 windowrule = float, confirm
@@ -163,6 +200,7 @@ windowrule = float, title:Open File
 windowrule = float, title:branchdialog
 windowrule = float, Lxappearance
 windowrule = float, Rofi
+windowrule = float, Wofi
 windowrule = animation none,Rofi
 windowrule = float,viewnior
 windowrule = float,feh
@@ -180,47 +218,44 @@ windowrule = float, title:^(Picture-in-Picture)$
 windowrule = size 800 600, title:^(Volume Control)$
 windowrule = move 75 44%, title:^(Volume Control)$
 
-master {
-    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-    new_is_master = true
-}
+#+END_SRC
 
-gestures {
-    # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = off
-}
+** Key bindings
 
-# Example per-device config
-# See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-device:epic mouse V1 {
-    sensitivity = -0.5
-}
+*** Variables
 
-# Example windowrule v1
-# windowrule = float, ^(kitty)$
-# Example windowrule v2
-# windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-# See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+#+BEGIN_SRC conf :tangle hyprland.conf
 
-
-# See https://wiki.hyprland.org/Configuring/Keywords/ for more
 # $mainMod = SUPER
 $mainMod = ALT
+$Web_browser = firefox
+$Terminal = kitty
+$FileManager = pcmanfm
 
-# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-bind = $mainMod, T, exec, kitty
-bind = $mainMod, Return, exec, kitty
-bind = $mainMod, Q, killactive,
-bind = $mainMod SHIFT, Q, exit,
-bind = $mainMod, E, exec, pcmanfm
+#+END_SRC
+
+*** Launch applications
+| Mod   | Key    | Application |
+|-------+--------+-------------|
+| Super | T      | terminal    |
+| Super | Return | terminal    |
+| Super | E      | FileManager |
+#+BEGIN_SRC conf :tangle hyprland.conf
+bind = $mainMod, T, exec, $Terminal
+bind = $mainMod, Return, exec, $Terminal
+bind = $mainMod, E, exec, $FileManager
 bind = $mainMod, V, togglefloating,
 bind = $mainMod, R, exec, wofi --show-icons --show drun
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, J, togglesplit, # dwindle
-bind = $mainMod, B, exec, firefox
+bind = $mainMod, B, exec, $Web_browser
 bind = $mainMod, w, exec, emacsclient -c -a emacs
+bind = CTRL SHIFT, up, exec, pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo +4%
+bind = CTRL SHIFT, down, exec, pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo -4%
 
 # Move focus with mainMod + arrow keys
+bind = $mainMod SHIFT, Q, exit,
+bind = $mainMod, Q, killactive,
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r
 bind = $mainMod, up, movefocus, u

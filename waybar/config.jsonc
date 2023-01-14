@@ -70,9 +70,10 @@
         "format": "{icon} {volume}%",
         "tooltip": false,
         "format-muted": " Muted",
-        "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
+        "on-click": "pactl set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo +4%",
+        "on-scroll-down": "pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo -4%",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -88,9 +89,6 @@
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": " Muted",
-        "on-click": "pactl set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo toggle",
-        "on-scroll-up": "pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo +4%",
-        "on-scroll-down": "pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo -4%",
         "scroll-step": 5
     }
 }
