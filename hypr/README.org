@@ -227,7 +227,7 @@ Defining a few variables for ease of future modifications
 #+BEGIN_SRC conf :tangle hyprland.conf
 
 # $mainMod = SUPER
-$mainMod = ALT
+$mainMod = SUPER
 $Web_browser = firefox
 $Terminal = kitty
 $FileManager = pcmanfm
@@ -258,6 +258,11 @@ bind = $mainMod, w, exec, emacsclient -c -a emacs
 
 *** Multimedia Keys
 
+| Key binding  | action      |
+|--------------+-------------|
+| CTRL + SHIFT | Volume Up   |
+| CTRL + SHIFT | Volume Down |
+
 #+BEGIN_SRC conf :tangle hyprland.conf
 
 bind = CTRL SHIFT, up, exec, pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo +4%
@@ -265,6 +270,9 @@ bind = CTRL SHIFT, down, exec, pactl set-sink-volume alsa_output.pci-0000_01_00.
 bind = CTRL SHIFT, up, exec, pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo +4%
 bind = CTRL SHIFT, down, exec, pactl set-sink-volume alsa_output.pci-0000_00_14.2.analog-stereo -4%
 
+#+END_SRC
+
+#+BEGIN_SRC conf :tangle hyprland.conf
 # Move focus with mainMod + arrow keys
 bind = $mainMod, V, togglefloating,
 bind = $mainMod, P, pseudo, # dwindle
