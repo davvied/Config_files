@@ -22,6 +22,7 @@ This config is based on https://github.com/linuxmobile hyprland config file
 exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once = /usr/lib/polkit-1/polkitd
+exec-once = /usr/bin/gnome-keyring-daemon
 exec-once = waybar
 exec-once = mpvpaper -p --fork -o "no-audio --loop-playlist" HDMI-A-1 $(find ~/Pictures/animated_wallpaper -name "*.mp4" | shuf -n 1)
 exec-once = mpvpaper -p --fork -o "no-audio --loop-playlist" DVI-I-2 $(find ~/Pictures/animated_wallpaper -name "*.mp4" | shuf -n 1)
