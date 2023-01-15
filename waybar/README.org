@@ -1,3 +1,18 @@
+#+title: Waybar Config
+#+AUTHOR: S.Dawud M
+#+PROPERTY: header-args :tangle config.jsonc
+#+auto_tangle: t
+#+STARTUP: showeverything
+
+* Table of content :toc:
+- [[#config-file][Config file]]
+- [[#removed-modules][Removed modules]]
+
+* Config file
+This config file is mostly a direct copy of https://github.com/linuxmobile waybar config
+
+#+BEGIN_SRC json :tangle config.jsonc
+
 {
     "layer": "top",
     "position": "top",
@@ -93,3 +108,12 @@
         "scroll-step": 5
     },
 }
+
+#+END_SRC
+
+* Removed modules
+    "custom/language": {
+        "exec": "cat /tmp/kb_layout",
+        "interval": 3,
+        "format": " {}"
+    },
