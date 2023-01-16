@@ -39,8 +39,8 @@ This will help with auto recognition for adding and removing extra monitors
 
 #+BEGIN_SRC conf :tangle hyprland.conf
 
-monitor=DVI-I-2,1920x1080@60,0x0,1
-monitor=HDMI-A-1,1920x1080@60,1920x0,1
+monitor=,DVI-I-2,1920x1080@60,0x0,1
+monitor=,HDMI-A-1,1920x1080@60,1920x0,1
 
 #+END_SRC
 
@@ -250,7 +250,8 @@ $FileManager = pcmanfm
 bind = $mainMod, T, exec, $Terminal
 bind = $mainMod, Return, exec, $Terminal
 bind = $mainMod, E, exec, $FileManager
-bind = $mainMod, R, exec, wofi --show-icons --show drun
+bind = $mainMod, R, exec, rofi -show-icons -show drun -location 1 -sidebar-mode
+bind = $mainMod SHIFT, R, exec, wofi --show drun
 bind = $mainMod, B, exec, $Web_browser
 bind = $mainMod, w, exec, emacsclient -c -a emacs
 
