@@ -10,8 +10,7 @@ from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401
 
 mod = "mod4"
-# Terminal = guess_terminal()
-Terminal = "alacritty"
+Terminal = guess_terminal()
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
@@ -154,7 +153,7 @@ widget_defaults = dict(
     fontsize=14,
     padding=3,
     background = colors["Gray"],
-    foreground = colors["Light_Blue"],
+    foreground = colors["Blue_Light"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -164,7 +163,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.AGroupBox(
-                    border = colors["Blue_1"],
+                    border = colors["Purple_Light"],
                     borderwidth = 2,
                     center_aligned = True,
                     margin = 3,
@@ -189,13 +188,13 @@ screens = [
                     distro = 'Arch_paru',
                     no_update_string = 'Up to date',
                     update_interval = 600,
-                    background = colors["Light_Blue"],
+                    background = colors["Blue_Light"],
                 ),
                 # widget.TextBox(
                 #     "\ue0b8",
                 #     padding = 8,
                     # fontsize = 18,
-                    # background = colors["Light_Blue"],
+                    # background = colors["Blue_Light"],
                     # foreground = colors["Gray"],
                 # ),
                 widget.OpenWeather(
@@ -208,7 +207,7 @@ screens = [
                 # ),
                 widget.KeyboardLayout(
                     configured_keyboards = ['us', 'ir'],
-                    background = colors["Light_Blue"],
+                    background = colors["Blue_Light"],
                     foreground = colors["Black"],
                 ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
@@ -223,7 +222,7 @@ screens = [
                 widget.GroupBox(
                     fontsize = 12,
                     active = colors["Red"],
-                    block_highlight_text_color = colors["Blue_1"],
+                    block_highlight_text_color = colors["Purple_Light"],
                 ),
                 # widget.Spacer(),
                 widget.TaskList(
