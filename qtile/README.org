@@ -111,12 +111,12 @@ keys = [
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "mod1"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    Key([mod, "shift"], "Tap", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
+    Key([mod, "mod1"], "Tab", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack",),
 
          ### Switch focus of monitors
-    Key([mod], "1", lazy.to_screen(0), desc='Keyboard focus to monitor 1'),
-    Key([mod], "2", lazy.to_screen(1), desc='Keyboard focus to monitor 2'),
-    Key([mod], "3", lazy.to_screen(2), desc='Keyboard focus to monitor 3'),
+    Key([mod, "mod1"], "1", lazy.to_screen(0), desc='Keyboard focus to monitor 1'),
+    Key([mod, "mod1"], "2", lazy.to_screen(1), desc='Keyboard focus to monitor 2'),
+    Key([mod, "mod1"], "3", lazy.to_screen(2), desc='Keyboard focus to monitor 3'),
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
 
