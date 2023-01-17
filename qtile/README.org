@@ -121,11 +121,11 @@ keys = [
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
 
 
-    Key(["control", "shift"], "Left", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 2%- -q"), desc="dec audio volume"),
-    Key(["control", "shift"], "Right", lazy.spawn("amixer set Master 2%+ -q"), desc="inc audio volume"),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 2%+ -q"), desc="inc audio volume"),
-    Key([], "XF86AudioMute", lazy.spawn("amixer set Master toggle -q"), desc="Toggle audio on & off"),
+    Key(["control", "shift"], "Left", lazy.spawn("pactl set-sink-volume 53 -4%"), desc="dec audio volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 53 -4%"), desc="dec audio volume"),
+    Key(["control", "shift"], "Right", lazy.spawn("pactl set-sink-volume 53 +4%"), desc="inc audio volume"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 53 +4%"), desc="inc audio volume"),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute 53 toggle"), desc="Toggle audio on & off"),
 
     Key([mod], "Return", lazy.spawn(Terminal), desc="Launch terminal"),
     Key([mod], "t", lazy.spawn(Terminal), desc="Launch terminal"),
