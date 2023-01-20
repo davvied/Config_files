@@ -3,7 +3,7 @@ import os
 import re
 import socket
 import subprocess
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -14,9 +14,12 @@ Terminal = guess_terminal()
 Web_Browser = "firefox"
 EmailClient = "thunderbird"
 App_Launcher = "rofi -show-icons -show drun"
-File_Manager = "nautilus"
+File_Manager = "thunar"
 Editer = "/usr/bin/emacsclient -c -a /usr/bin/emacs"
-Display_Manager = "arandr"
+if qtile.core.name == "x11":
+    Display_Manager = "arandr"
+elif qtile.core.name == "wayland":
+    Display_Manager = "wlr-randr"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),

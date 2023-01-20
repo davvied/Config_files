@@ -4,6 +4,7 @@
 $HOME/.screenlayout/res.sh &
 # nitrogen --restore &
 nm-applet &
+firewall-applet &
 # pasystray &
-/usr/lib/polkit-1/polkit-agent-helper-1 &
+polkit-dumb-agent &
 picom --vsync --fade-in-step=0.4 --fade-out-step=0.4 --shadow --blur-background --daemon &
