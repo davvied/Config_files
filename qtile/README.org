@@ -388,16 +388,16 @@ def start_once():
 
 #+END_SRC
 *** Auto Start once script
-#+BEGIN_SRC bash :tangle start_once.sh :shebang #!/bin/bash
+#+BEGIN_SRC sh :tangle start_once.sh :shebang #!/bin/sh
 /usr/bin/emacs --daemon &
-
+eval (ssh-agent -c) &
 $HOME/.screenlayout/res.sh &
 # nitrogen --restore &
 nm-applet &
 firewall-applet &
 # pasystray &
 polkit-dumb-agent &
-picom --vsync --fade-in-step=0.4 --fade-out-step=0.4 --shadow --blur-background --daemon &
+picom --vsync --fade-in-step=0.4 --fade-out-step=0.4 --shadow --blur-background &
 
 #+END_SRC
 *** Auto start (repeat)
@@ -410,14 +410,15 @@ def autostart():
 
 #+END_SRC
 *** Auto start script (repeat)
-#+BEGIN_SRC bash :tangle autostart.sh :shebang #!/bin/bash
+#+BEGIN_SRC sh :tangle autostart.sh :shebang #!/bin/sh
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
 # 1. Uncomment to restore last saved wallpaper
 # xargs xwallpaper --stretch < ~/.cache/wall &
 # 2. Uncomment to set a random wallpaper on login
 # find /usr/share/backgrounds/elementary_wallpapers -type f | shuf -n 1 | xargs xwallpaper --stretch &
-find $HOME/Pictures/wallpaper -type f | shuf -n 1 | xargs xwallpaper --stretch &
+# find $HOME/Pictures/wallpaper -type f | shuf -n 1 | xargs xwallpaper --stretch &
 # 3. Uncomment to set wallpaper with nitrogen
+xwallpaper --output LVDS1 --stretch (find /home/fuji/wallpapers/waves | shuf -n 1)
 
 #+END_SRC
 ** End of Config files
