@@ -26,7 +26,7 @@ exec-once = /usr/bin/gnome-keyring-daemon --start --daemonize
 exec-once = waybar
 exec-once = mpvpaper -p --fork -o "no-audio --loop-playlist" HDMI-A-1 $(find ~/Pictures/animated_wallpaper -name "*.mp4" | shuf -n 1)
 exec-once = mpvpaper -p --fork -o "no-audio --loop-playlist" DVI-I-2 $(find ~/Pictures/animated_wallpaper -name "*.mp4" | shuf -n 1)
-exec-once = pcmanfm --daemon-mode
+# exec-once = pcmanfm --daemon-mode
 exec-once = emacs -daemon
 exec-once = /usr/bin/gamemoded
 
@@ -230,9 +230,10 @@ Defining a few variables for ease of future modifications
 #+BEGIN_SRC conf :tangle hyprland.conf
 
 $mainMod = SUPER
-$Web_browser = firefox
-$Terminal = kitty
-$FileManager = pcmanfm
+# $Web_browser = firefox
+$Web_browser = vivaldi
+$Terminal = kgx
+$FileManager = nautilus
 
 #+END_SRC
 
